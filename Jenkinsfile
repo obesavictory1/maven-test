@@ -14,10 +14,11 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/obesavictory1/maven-test.git'
             }
         }
-        stage ("Sonarqube scan") {
-          steps{
-          withSonarQubeEnv('sonarQube')
+        stage ('Sonarqube scan') {
+          steps {
+          withSonarQubeEnv('sonarQube') {
         sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=obesavictory1_geolocation1'
+          }
           }
         }
         stage('Code Build') {
